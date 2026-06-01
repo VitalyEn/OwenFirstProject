@@ -1,0 +1,28 @@
+﻿TYPE E_WorkMode :
+(
+    MODE_MANUAL := 0,
+    MODE_AUTO   := 1
+);
+END_TYPE
+
+(* Имена LEV_* — не LVL_*: в CODESYS идентификаторы без учёта регистра,
+   LVL_HIGH совпадает с BOOL LVL_High из GVL_IO → ошибка C0066/C0231 *)
+TYPE E_LevelState :
+(
+    LEV_EMPTY := 0,
+    LEV_LOW   := 1,
+    LEV_MID   := 2,
+    LEV_HIGH  := 3,
+    LEV_FAULT := 4
+);
+END_TYPE
+
+TYPE ST_ScheduleSlot :
+STRUCT
+    Enable    : BOOL;
+    StartHour : BYTE;
+    StartMin  : BYTE;
+    StopHour  : BYTE;
+    StopMin   : BYTE;
+END_STRUCT
+END_TYPE

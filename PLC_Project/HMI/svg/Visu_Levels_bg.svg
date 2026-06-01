@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1f33"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a3352"/>
+      <stop offset="100%" stop-color="#132238"/>
+    </linearGradient>
+    <linearGradient id="waterGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1a6b8a"/>
+      <stop offset="100%" stop-color="#4cc9f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="800" height="52" fill="url(#headerGrad)" stroke="#2a4a6b"/>
+  <text x="14" y="32" fill="#4cc9f0" font-family="Arial,sans-serif" font-size="16" font-weight="bold">UROVNI I LOGIKA</text>
+  <rect x="20" y="68" width="100" height="200" rx="8" fill="#0d1f33" stroke="#2a4a6b" stroke-width="2"/>
+  <line x1="20" y1="88" x2="120" y2="88" stroke="#f4a261" stroke-width="2"/>
+  <line x1="20" y1="158" x2="120" y2="158" stroke="#4cc9f0" stroke-width="2"/>
+  <line x1="20" y1="238" x2="120" y2="238" stroke="#e76f51" stroke-width="2"/>
+  <rect x="26" y="120" width="88" height="140" fill="url(#waterGrad)" opacity="0.3" rx="4"/>
+  <rect x="140" y="68" width="648" height="200" rx="10" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="156" y="94" fill="#4cc9f0" font-size="14" font-weight="bold" font-family="Arial,sans-serif">Avtomaticheskiy rezhim</text>
+  <text x="156" y="118" fill="#e8f2fa" font-size="12" font-family="Arial,sans-serif">1. Ozhidanie verhnego urovnya (LEV_HIGH)</text>
+  <text x="156" y="140" fill="#e8f2fa" font-size="12" font-family="Arial,sans-serif">2. Doliv M4 pri neobhodimosti</text>
+  <text x="156" y="162" fill="#e8f2fa" font-size="12" font-family="Arial,sans-serif">3. Rabota mezhdu srednim i nizhnim</text>
+  <text x="156" y="184" fill="#e76f51" font-size="12" font-weight="bold" font-family="Arial,sans-serif">4. Nizhniy ili zatoplenie - STOP</text>
+  <rect x="140" y="280" width="648" height="108" rx="8" fill="#132238" stroke="#2a4a6b"/>
+  <text x="156" y="302" fill="#8aa8c4" font-size="11" font-weight="bold" font-family="Arial,sans-serif">DI datchiki</text>
+  <text x="156" y="324" fill="#e8f2fa" font-size="11" font-family="Arial,sans-serif">DI7 - LVL_High</text>
+  <text x="156" y="344" fill="#e8f2fa" font-size="11" font-family="Arial,sans-serif">DI8 - LVL_Mid</text>
+  <text x="400" y="324" fill="#e8f2fa" font-size="11" font-family="Arial,sans-serif">DI9 - LVL_Low</text>
+  <text x="400" y="344" fill="#e8f2fa" font-size="11" font-family="Arial,sans-serif">Flood</text>
+  <rect x="0" y="400" width="800" height="44" fill="#132238" stroke="#2a4a6b"/>
+  <line x1="160" y1="400" x2="160" y2="444" stroke="#2a4a6b"/>
+  <line x1="320" y1="400" x2="320" y2="444" stroke="#2a4a6b"/>
+  <line x1="480" y1="400" x2="480" y2="444" stroke="#2a4a6b"/>
+  <line x1="640" y1="400" x2="640" y2="444" stroke="#2a4a6b"/>
+  <text x="560" y="427" fill="#4cc9f0" font-size="12" text-anchor="middle" font-weight="bold" font-family="Arial,sans-serif">Urovni</text>
+  <rect x="480" y="398" width="160" height="3" fill="#4cc9f0"/>
+  <rect x="0" y="444" width="800" height="36" fill="#132238" stroke="#2a4a6b"/>
+</svg>

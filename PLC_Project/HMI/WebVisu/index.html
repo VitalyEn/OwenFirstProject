@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=800, height=480, initial-scale=1">
+  <title>ЩУ Насосы Крым</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="viewport">
+    <div id="alarmBanner" class="alarm-banner">АВАРИЯ</div>
+
+    <header class="header">
+      <h1>ЩУ · Насосы Крым</h1>
+      <span id="modeBadge" class="badge badge-auto">Автомат</span>
+      <span id="clock" class="clock">00:00:00</span>
+    </header>
+
+    <nav class="nav">
+      <button type="button" data-page="pageMain" class="active">Главная</button>
+      <button type="button" data-page="pagePumps">Насосы</button>
+      <button type="button" data-page="pageValves">Краны</button>
+      <button type="button" data-page="pageLevels">Уровни</button>
+      <button type="button" data-page="pageSet">Настройки</button>
+    </nav>
+
+    <main class="content">
+      <!-- Главная -->
+      <section id="pageMain" class="page active">
+        <div class="tank-wrap">
+          <div class="tank">
+            <div class="tank-mark high"></div>
+            <div class="tank-mark mid"></div>
+            <div class="tank-mark low"></div>
+            <div id="tankFill" class="tank-fill" style="height:60%"></div>
+          </div>
+          <div class="level-info">
+            <h2>Уровень пруда</h2>
+            <p style="font-size:28px;font-weight:700;color:#4cc9f0" id="levelPct">60%</p>
+            <p style="font-size:13px;color:#8aa8c4;margin:4px 0 10px" id="levelText">Рабочий</p>
+            <div class="level-sensors">
+              <div id="senHigh" class="sensor"><span class="dot"></span> Верхний</div>
+              <div id="senMid" class="sensor on"><span class="dot"></span> Средний</div>
+              <div id="senLow" class="sensor"><span class="dot"></span> Нижний (авария)</div>
+              <div id="senFlood" class="sensor"><span class="dot"></span> Затопление</div>
+            </div>
+          </div>
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+          <div id="pN1" class="card"><div class="name">УПП1</div><div class="title">Н1 Каскад</div><span class="state state-run">Работа</span></div>
+          <div id="pN3" class="card"><div class="name">УПП2</div><div class="title">Н3 Каскад</div><span class="state state-run">Работа</span></div>
+          <div id="pN4" class="card"><div class="name">Фильтр</div><div class="title">Н4 UB140</div><span class="state state-stop">Стоп</span></div>
+          <div id="pM1" class="card"><div class="name">Туман</div><div class="title">М1</div><span class="state state-stop">Стоп</span></div>
+        </div>
+      </section>
+
+      <!-- Насосы -->
+      <section id="pagePumps" class="page">
+        <div class="grid">
+          <div id="pN1" class="card"><div class="name">COLORADO · УПП1</div><div class="title">Н1</div><span class="state state-run">Работа</span></div>
+          <div id="pN2" class="card"><div class="name">COLORADO</div><div class="title">Н2</div><span class="state state-stop">Стоп</span></div>
+          <div id="pN3" class="card"><div class="name">COLORADO · УПП2</div><div class="title">Н3</div><span class="state state-run">Работа</span></div>
+          <div id="pN4" class="card"><div class="name">ULTRABEAD</div><div class="title">Н4 Фильтр</div><span class="state state-stop">Стоп</span></div>
+          <div id="pN5" class="card"><div class="name">VERDON ES200T</div><div class="title">Н5</div><span class="state state-stop">Стоп</span></div>
+          <div id="pN6" class="card"><div class="name">Ручей</div><div class="title">Н6</div><span class="state state-stop">Стоп</span></div>
+          <div id="pM1" class="card"><div class="name">9 кВт</div><div class="title">М1 Туман</div><span class="state state-stop">Стоп</span></div>
+        </div>
+        <p style="margin-top:10px;font-size:11px;color:#8aa8c4">Ручной режим — по ключам SA на щите. Индикация с контакторов и УПП.</p>
+      </section>
+
+      <!-- Краны -->
+      <section id="pageValves" class="page">
+        <div class="valve-row">
+          <div id="vM2" class="valve open"><div class="icon">◎</div><div>М2 Каскад</div><div class="vstate">Открыт</div></div>
+          <div id="vM3" class="valve open"><div class="icon">◎</div><div>М3 Каскад</div><div class="vstate">Открыт</div></div>
+          <div id="vM4" class="valve closed"><div class="icon">◎</div><div>М4 Долив</div><div class="vstate">Закрыт</div></div>
+          <div id="vM5" class="valve closed"><div class="icon">◎</div><div>М5 Затопл.</div><div class="vstate">Закрыт</div></div>
+        </div>
+        <div class="valve-row" style="margin-top:12px">
+          <div id="vUF" class="valve closed"><div class="icon">◉</div><div>У.Ф.</div><div class="vstate">Выкл</div></div>
+          <div id="vComp" class="valve closed"><div class="icon">◉</div><div>Компрессор</div><div class="vstate">Выкл</div></div>
+          <div id="vLight" class="valve open"><div class="icon">☀</div><div>Подсветка</div><div class="vstate">Вкл</div></div>
+        </div>
+      </section>
+
+      <!-- Уровни -->
+      <section id="pageLevels" class="page">
+        <div class="tank-wrap" style="height:200px">
+          <div class="tank" style="height:190px;width:100px">
+            <div class="tank-mark high"></div>
+            <div class="tank-mark mid"></div>
+            <div class="tank-mark low"></div>
+            <div id="tankFill2" class="tank-fill" style="height:60%"></div>
+          </div>
+          <div class="level-info">
+            <h2>Логика автомата</h2>
+            <ol style="font-size:12px;color:#8aa8c4;line-height:1.7;padding-left:18px">
+              <li>Ожидание <strong style="color:#4cc9f0">верхнего</strong> уровня</li>
+              <li>Долив через <strong>М4</strong> при необходимости</li>
+              <li>Работа по <strong>среднему</strong> уровню</li>
+              <li><strong style="color:#e76f51">Нижний</strong> или затопление → СТОП всех</li>
+            </ol>
+            <div class="level-sensors" style="margin-top:12px">
+              <div id="senHigh2" class="sensor"><span class="dot"></span> DI44 Верхний</div>
+              <div id="senMid2" class="sensor on"><span class="dot"></span> DI45 Средний</div>
+              <div id="senLow2" class="sensor"><span class="dot"></span> DI46 Нижний</div>
+              <div id="senFlood2" class="sensor"><span class="dot"></span> DI47 Затопление</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Настройки -->
+      <section id="pageSet" class="page">
+        <div class="form-row">
+          <span>Автоматический режим (HMI)</span>
+          <button type="button" id="togAuto" class="toggle on" aria-label="Авто"></button>
+        </div>
+        <div class="form-row">
+          <span>Подсветка пруда</span>
+          <button type="button" id="togLight" class="toggle" aria-label="Свет"></button>
+        </div>
+        <div class="form-row">
+          <span>Принудительный долив М4</span>
+          <button type="button" id="togFill" class="toggle" aria-label="Долив"></button>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:16px">
+          <button type="button" id="btnReset" class="btn btn-alarm">Сброс аварии</button>
+        </div>
+        <p style="margin-top:14px;font-size:11px;color:#8aa8c4">
+          Расписания Н1–Н6: GVL_Schedules (RETAIN). WebVisu: http://IP:8080/webvisu.htm
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="item"><span id="ledReady" class="led"></span> Готов</div>
+      <div class="item"><span id="ledRun" class="led on"></span> <span id="statusLine">Работа</span></div>
+      <div class="item"><span id="ledFill" class="led"></span> Наполнение</div>
+      <div class="item"><span id="ledAlarm" class="led"></span> Авария</div>
+    </footer>
+  </div>
+
+  <script src="plc-bindings.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // синхронизация второго резервуара на экране уровней
+    const _render = render;
+    render = function() {
+      _render();
+      const t = document.getElementById('tankFill');
+      const t2 = document.getElementById('tankFill2');
+      if (t && t2) t2.style.height = t.style.height;
+      ['senHigh','senMid','senLow','senFlood'].forEach((id, i) => {
+        const src = document.getElementById(id);
+        const dst = document.getElementById(id + '2');
+        if (src && dst) dst.className = src.className;
+      });
+    };
+  </script>
+</body>
+</html>

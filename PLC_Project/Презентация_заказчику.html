@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЩУ «Насосы Крым» — автоматизация на СПК210-07</title>
+  <style>
+    :root {
+      --bg: #0b1f2a;
+      --card: #123040;
+      --accent: #2ec4b6;
+      --accent2: #4cc9f0;
+      --text: #e8f4f8;
+      --muted: #9bb8c4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(145deg, #071218 0%, #0b1f2a 50%, #0d2838 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .deck { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    section.slide {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 2.5rem 2.8rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(78, 201, 240, 0.15);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      page-break-inside: avoid;
+    }
+    h1 { font-size: 2rem; color: var(--accent2); margin-bottom: 0.5rem; }
+    h2 { font-size: 1.35rem; color: var(--accent); margin-bottom: 1.2rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.4rem; }
+    .subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+    ul { margin-left: 1.2rem; margin-top: 0.6rem; }
+    li { margin-bottom: 0.45rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.95rem; }
+    th, td { border: 1px solid rgba(155,184,196,0.25); padding: 0.55rem 0.75rem; text-align: left; }
+    th { background: rgba(46,196,182,0.15); color: var(--accent); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+    .card-mini {
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      border-left: 4px solid var(--accent);
+    }
+    .card-mini h3 { font-size: 1rem; color: var(--accent2); margin-bottom: 0.4rem; }
+    .price { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+    .tag { display: inline-block; background: rgba(46,196,182,0.2); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.85rem; margin-right: 0.4rem; }
+    .flow {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .flow span { background: rgba(76,201,240,0.15); padding: 0.4rem 0.8rem; border-radius: 8px; }
+    .flow .arrow { background: none; color: var(--accent); }
+    footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 2rem; }
+    @media print {
+      body { background: white; color: #111; }
+      section.slide { box-shadow: none; border: 1px solid #ccc; break-after: page; }
+      h1, h2 { color: #066; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+
+    <section class="slide">
+      <h1>Автоматизация щита ЩУ</h1>
+      <p class="subtitle">Объект «Насосы Крым» · контроллер ОВЕН СПК210-07-CS · CODESYS 3.5</p>
+      <p>Проектирование программного обеспечения, визуализации и удалённого доступа для управления насосной станцией, фильтрацией, каскадом и системой уровней пруда.</p>
+      <p style="margin-top:1.5rem;"><span class="tag">СПК210-07</span><span class="tag">Web-HMI</span><span class="tag">OwenCloud</span><span class="tag">Ручной / Авто</span></p>
+    </section>
+
+    <section class="slide">
+      <h2>Состав оборудования (по схеме)</h2>
+      <div class="grid2">
+        <div class="card-mini">
+          <h3>Насосы каскада</h3>
+          <ul>
+            <li><strong>Н1, Н2, Н3</strong> — COLORADO 12,35 кВт</li>
+            <li>Н1 и Н3 — через УПП 15 кВт</li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h3>Фильтрация и ручей</h3>
+          <ul>
+            <li><strong>Н4</strong> — ULTRABEAD UB140</li>
+            <li><strong>Н5</strong> — VERDON ES200T</li>
+            <li><strong>Н6</strong> — насос ручья 4,7 кВт</li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h3>Краны и доп. системы</h3>
+          <ul>
+            <li><strong>М1</strong> — генератор тумана 9 кВт</li>
+            <li><strong>М2, М3</strong> — краны каскада</li>
+            <li><strong>М4</strong> — долив · <strong>М5</strong> — затопление</li>
+            <li>У.Ф., компрессор промывки, подсветка</li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h3>Контроль</h3>
+          <ul>
+            <li>3 датчика уровня + затопление</li>
+            <li>Контакты автоматов (ДК)</li>
+            <li>Ключи SA1…SA14 на щите</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Два режима работы</h2>
+      <div class="grid2">
+        <div class="card-mini" style="border-left-color:#e07a5f;">
+          <h3>Ручной (сервисный)</h3>
+          <ul>
+            <li>Ключи SA1…SA7 — прямой пуск без защиты сухого хода</li>
+            <li>SA8/SA9 — открытие/закрытие кранов М2, М3</li>
+            <li>SA10/SA11 — М4, М5 открыты / в «0» закрыты</li>
+            <li>SA12 — У.Ф. · SA13 — компрессор (только ручной)</li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h3>Автоматический</h3>
+          <ul>
+            <li>Ожидание <strong>верхнего</strong> уровня воды</li>
+            <li>Работа между <strong>средним</strong> и <strong>нижним</strong> уровнем</li>
+            <li>Нижний уровень → <strong>останов всего</strong> (сухой ход)</li>
+            <li>Затопление → останов</li>
+            <li>Насосы Н1–Н6, М1 — по <strong>расписанию</strong></li>
+            <li>Подсветка — по таймеру при работе</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Логика уровней и долива</h2>
+      <div class="flow">
+        <span>Старт авто</span>
+        <span class="arrow">→</span>
+        <span>Ожидание верхнего уровня</span>
+        <span class="arrow">→</span>
+        <span>М4 долив при необходимости</span>
+        <span class="arrow">→</span>
+        <span>Рабочий режим (средний уровень)</span>
+        <span class="arrow">→</span>
+        <span>Нижний уровень / затопление → СТОП</span>
+      </div>
+      <p style="color:var(--muted); margin-top:0.8rem;">М5 открывается при сигнале затопления. М2/М3 в автомате — уточняются на этапе согласования ТЗ.</p>
+    </section>
+
+    <section class="slide">
+      <h2>Удалённое управление</h2>
+      <ul>
+        <li><strong>Web-сервер СПК210</strong> — управление в автомате через браузер (ПК, планшет, телефон)</li>
+        <li>Индикация: вкл/откл насосов, положение кранов, уровни, аварии</li>
+        <li><strong>Роутер</strong> на щите — SIM или Wi‑Fi для доступа извне</li>
+        <li><strong>OwenCloud</strong> — мониторинг и удалённая загрузка проекта (по требованию)</li>
+        <li>Подсветка пруда — отдельный контур (Tuya / RF / Push-Dim), управление сценариями в приложении Arlight</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Этапы проектирования</h2>
+      <table>
+        <tr><th>Этап</th><th>Срок</th><th>Результат</th></tr>
+        <tr><td>1. Согласование ТЗ</td><td>1 нед.</td><td>Расписания, логика M2/M3, карта I/O</td></tr>
+        <tr><td>2. Программирование ПЛК</td><td>3 нед.</td><td>Проект CODESYS, ручной/авто режимы</td></tr>
+        <tr><td>3. Web-HMI</td><td>1–2 нед.</td><td>Экраны оператора, аварии, настройки</td></tr>
+        <tr><td>4. ПНР на объекте</td><td>1–2 нед.</td><td>Настройка, обучение персонала</td></tr>
+        <tr><td><strong>Итого</strong></td><td><strong>5–7 нед.</strong></td><td>Сдача объекта заказчику</td></tr>
+      </table>
+    </section>
+
+    <section class="slide">
+      <h2>Ориентировочная стоимость</h2>
+      <table>
+        <tr><th>Пакет</th><th>Состав</th><th>Цена</th></tr>
+        <tr><td>Минимум</td><td>ПЛК-логика, базовый Web-HMI, 1 выезд</td><td class="price">от 620 000 ₽</td></tr>
+        <tr><td><strong>Стандарт</strong></td><td>Полная логика, HMI, журнал, OwenCloud, 2 выезда</td><td class="price">850 000 ₽</td></tr>
+        <tr><td>Расширенный</td><td>+ химстанция, OPC, 12 мес. поддержки</td><td class="price">1 150 000 ₽</td></tr>
+      </table>
+      <p style="margin-top:1rem; color:var(--muted); font-size:0.9rem;">Трудозатраты: ~212 ч инженерных работ. Выезд в Крым — отдельная строка 80–150 тыс. ₽. Детальная смета — в файле «Оценка_стоимости.md».</p>
+    </section>
+
+    <section class="slide">
+      <h2>Что нужно от заказчика</h2>
+      <ul>
+        <li>Расписание работы каждого насоса (часы вкл/откл по дням недели)</li>
+        <li>Логика кранов М2 и М3 в автоматическом режиме</li>
+        <li>Доступ к объекту для ПНР, SIM или Wi‑Fi для роутера</li>
+        <li>Контакт ответственного за эксплуатацию пруда</li>
+      </ul>
+      <p style="margin-top:1.5rem;">Готовый каркас проекта CODESYS и исходный код — в папке <strong>PLC_Project</strong>.</p>
+    </section>
+
+    <footer>
+      ЩУ «Насосы Крым» · СПК210-07-CS · CODESYS 3.5 SP17 · май 2026
+    </footer>
+  </div>
+</body>
+</html>

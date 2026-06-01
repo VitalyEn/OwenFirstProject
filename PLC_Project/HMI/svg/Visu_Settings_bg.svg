@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1f33"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a3352"/>
+      <stop offset="100%" stop-color="#132238"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="800" height="52" fill="url(#headerGrad)" stroke="#2a4a6b"/>
+  <text x="14" y="32" fill="#4cc9f0" font-family="Arial,sans-serif" font-size="16" font-weight="bold">NASTROJKI HMI</text>
+  <rect x="14" y="72" width="772" height="48" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="28" y="100" fill="#e8f2fa" font-size="13" font-family="Arial,sans-serif">Avtomaticheskiy rezhim</text>
+  <text x="620" y="100" fill="#8aa8c4" font-size="10" font-family="Arial,sans-serif">HMI_AutoEnable</text>
+  <rect x="700" y="86" width="72" height="28" rx="14" fill="#4a5f73" stroke="#2ec4b6" stroke-width="1"/>
+  <rect x="14" y="128" width="772" height="48" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="28" y="156" fill="#e8f2fa" font-size="13" font-family="Arial,sans-serif">Podsvetka pruda</text>
+  <text x="620" y="156" fill="#8aa8c4" font-size="10" font-family="Arial,sans-serif">HMI_LightOn</text>
+  <rect x="700" y="142" width="72" height="28" rx="14" fill="#4a5f73"/>
+  <rect x="14" y="184" width="772" height="48" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="28" y="212" fill="#e8f2fa" font-size="13" font-family="Arial,sans-serif">Prinuditelnyj doliv M4</text>
+  <text x="620" y="212" fill="#8aa8c4" font-size="10" font-family="Arial,sans-serif">HMI_FillValveForce</text>
+  <rect x="700" y="198" width="72" height="28" rx="14" fill="#4a5f73"/>
+  <rect x="14" y="252" width="200" height="44" rx="8" fill="#e76f51" opacity="0.25" stroke="#e76f51"/>
+  <text x="114" y="279" fill="#e76f51" font-size="13" text-anchor="middle" font-weight="bold" font-family="Arial,sans-serif">Sbros avarii</text>
+  <text x="230" y="279" fill="#8aa8c4" font-size="10" font-family="Arial,sans-serif">HMI_ResetAlarm</text>
+  <rect x="14" y="310" width="772" height="78" rx="8" fill="#132238" stroke="#2a4a6b" stroke-dasharray="6,3"/>
+  <text x="28" y="336" fill="#8aa8c4" font-size="12" font-weight="bold" font-family="Arial,sans-serif">Raspisanie (opcionalno)</text>
+  <text x="28" y="358" fill="#8aa8c4" font-size="11" font-family="Arial,sans-serif">GVL_Schedules Sched_N1, Sched_M1</text>
+  <text x="14" y="408" fill="#8aa8c4" font-size="10" font-family="Arial,sans-serif">WebVisu: http://IP:8080/webvisu.htm</text>
+  <rect x="0" y="400" width="800" height="44" fill="#132238" stroke="#2a4a6b"/>
+  <line x1="640" y1="400" x2="640" y2="444" stroke="#2a4a6b"/>
+  <text x="720" y="427" fill="#4cc9f0" font-size="12" text-anchor="middle" font-weight="bold" font-family="Arial,sans-serif">Nastrojki</text>
+  <rect x="640" y="398" width="160" height="3" fill="#4cc9f0"/>
+  <rect x="0" y="444" width="800" height="36" fill="#132238" stroke="#2a4a6b"/>
+</svg>

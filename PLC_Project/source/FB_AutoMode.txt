@@ -1,0 +1,83 @@
+﻿FUNCTION_BLOCK FB_AutoMode
+VAR_INPUT
+    Enable : BOOL;
+    LevelState : E_LevelState;
+    LevelAllowRun : BOOL;
+    LevelNeedFill : BOOL;
+    LevelEmergencyStop : BOOL;
+END_VAR
+VAR
+    SchN1, SchN2, SchN3, SchN4, SchN5, SchN6, SchM1 : FB_Schedule;
+    NowHour, NowMin : BYTE;
+    LightTimer : TON;
+END_VAR
+IF NOT Enable THEN RETURN; END_IF
+
+// Аварийная остановка
+IF LevelEmergencyStop THEN
+    GlobalStop := TRUE;
+    Alarm_Active := TRUE;
+    GVL_Process.Alarm_DryRun := LVL_Low AND NOT Flood;
+    GVL_Process.Alarm_Flood := Flood;
+    RETURN;
+END_IF
+
+// Фаза наполнения: ждём верхний уровень
+// Верхний уровень: LEV_HIGH (enum), дискрет DI — LVL_High (BOOL), имена разные!
+IF NOT FillPhaseDone THEN
+    IF LevelState = LEV_HIGH THEN
+        FillPhaseDone := TRUE;
+        SystemReady := TRUE;
+    ELSE
+        // Долив M4 при необходимости
+        CMD_KM7 := LevelNeedFill OR HMI_FillValveForce;
+        SystemRunning := CMD_KM7;
+        RETURN;
+    END_IF
+END_IF
+
+// Рабочий режим между средним и нижним
+IF LevelState = LEV_FAULT THEN
+    GlobalStop := TRUE;
+    RETURN;
+END_IF
+
+SystemRunning := LevelAllowRun;
+
+// Расписания (заглушки — настраиваются в GVL_Schedules RETAIN)
+SchN1(Enable := SA1_Auto, Slot := Sched_N1, NowHour := NowHour, NowMin := NowMin);
+CMD_VFD1_Start := SchN1.Active AND LevelAllowRun AND NOT VFD1_Alarm;
+CMD_VFD1_Stop := NOT SchN1.Active OR GlobalStop;
+
+SchN3(Enable := SA3_Auto, Slot := Sched_N3, NowHour := NowHour, NowMin := NowMin);
+CMD_VFD2_Start := SchN3.Active AND LevelAllowRun AND NOT VFD2_Alarm;
+
+SchN4(Enable := SA4_Auto, Slot := Sched_N4, NowHour := NowHour, NowMin := NowMin);
+CMD_KM1 := SchN4.Active AND LevelAllowRun;
+
+SchN5(Enable := SA5_Auto, Slot := Sched_N5, NowHour := NowHour, NowMin := NowMin);
+CMD_KM2 := SchN5.Active AND LevelAllowRun;
+
+SchN6(Enable := SA6_Auto, Slot := Sched_N6, NowHour := NowHour, NowMin := NowMin);
+CMD_KM3 := SchN6.Active AND LevelAllowRun;
+
+SchM1(Enable := SA7_Auto, Slot := Sched_M1, NowHour := NowHour, NowMin := NowMin);
+CMD_KM0 := SchM1.Active AND LevelAllowRun;
+
+// M4 долив по 3 уровням в авто
+CMD_KM7 := LevelNeedFill AND NOT SA10_ManualOpen;
+
+// M5 по затоплению — открыть при Flood, иначе закрыть
+CMD_KM8 := Flood;
+
+// M2/M3 — требуется уточнение заказчиком: по умолчанию открыты при работе
+IF SystemRunning THEN
+    CMD_KM5_1_Open := TRUE;
+    CMD_KM6_1_Open := TRUE;
+END_IF
+
+// Подсветка по таймеру
+LightTimer(IN := SystemRunning, PT := LightTimerPreset);
+CMD_KM11_Light := LightTimer.Q OR HMI_LightOn;
+
+END_FUNCTION_BLOCK

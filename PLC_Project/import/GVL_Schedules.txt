@@ -1,0 +1,3 @@
+﻿VAR_GLOBAL RETAIN
+    Sched_N1, Sched_N2, Sched_N3, Sched_N4, Sched_N5, Sched_N6, Sched_M1 : ST_ScheduleSlot;
+END_VAR

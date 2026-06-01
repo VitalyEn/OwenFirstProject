@@ -1,0 +1,50 @@
+﻿FUNCTION_BLOCK FB_ManualMode
+VAR_INPUT
+    Enable : BOOL;
+END_VAR
+VAR_OUTPUT
+    AnyManualActive : BOOL;
+END_VAR
+// Ручной режим: прямое управление ключами, без защит сухого хода
+IF NOT Enable THEN
+    AnyManualActive := FALSE;
+    RETURN;
+END_IF
+
+// Н1 через УПП — при SA1 в ручном включаем пуск (без interlock)
+IF NOT SA1_Auto THEN
+    CMD_VFD1_Start := TRUE;
+    CMD_VFD1_Stop := FALSE;
+ELSE
+    CMD_VFD1_Start := FALSE;
+END_IF
+
+IF NOT SA2_Auto THEN CMD_KM1 := TRUE; END_IF  // Н4 — KM1 на схеме для фильтра
+IF NOT SA3_Auto THEN CMD_VFD2_Start := TRUE; END_IF
+IF NOT SA4_Auto THEN CMD_KM1 := TRUE; END_IF
+IF NOT SA5_Auto THEN CMD_KM2 := TRUE; END_IF
+IF NOT SA6_Auto THEN CMD_KM3 := TRUE; END_IF
+IF NOT SA7_Auto THEN CMD_KM0 := TRUE; END_IF
+
+// M2/M3 — SA8.1/SA9.1 открыть/закрыть
+IF SA8_Manual THEN
+    CMD_KM5_Close := SA8_1_Close;
+    CMD_KM5_1_Open := SA8_1_Open;
+END_IF
+IF SA9_Manual THEN
+    CMD_KM6_Close := SA9_1_Close;
+    CMD_KM6_1_Open := SA9_1_Open;
+END_IF
+
+// M4/M5 — при ручном сразу открыты, при 0 закрыты
+IF SA10_ManualOpen THEN CMD_KM7 := TRUE; ELSE CMD_KM7 := FALSE; END_IF
+IF SA11_ManualOpen THEN CMD_KM8 := TRUE; ELSE CMD_KM8 := FALSE; END_IF
+
+IF SA12_ManualOn THEN CMD_KM9 := TRUE; ELSE CMD_KM9 := FALSE; END_IF
+CMD_KM10 := SA13_Compressor;  // только ручной
+CMD_KM11_Light := SA14_LightManual;
+
+AnyManualActive := NOT SA1_Auto OR NOT SA2_Auto OR NOT SA3_Auto OR NOT SA4_Auto
+    OR NOT SA5_Auto OR NOT SA6_Auto OR NOT SA7_Auto OR SA8_Manual OR SA9_Manual
+    OR SA10_ManualOpen OR SA11_ManualOpen OR SA12_ManualOn OR SA13_Compressor;
+END_FUNCTION_BLOCK

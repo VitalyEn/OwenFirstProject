@@ -1,0 +1,12 @@
+﻿VAR_GLOBAL RETAIN
+    WorkMode           : E_WorkMode := MODE_AUTO;
+    SystemReady        : BOOL;
+    SystemRunning      : BOOL;
+    GlobalStop         : BOOL;
+    Alarm_Active       : BOOL;
+    Alarm_DryRun       : BOOL;
+    Alarm_Flood        : BOOL;
+    FillPhaseDone      : BOOL;
+    LightTimerPreset   : TIME := T#30M;
+    VFD_Speed_RunPct   : UINT := 1000;  (* MU210-502: 0…1000 соответствует 0…100% *)
+END_VAR

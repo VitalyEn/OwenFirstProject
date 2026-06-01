@@ -1,0 +1,41 @@
+﻿(* GVL_IO — входы/выходы щита ЩУ, СПК210-07-CS *)
+VAR_GLOBAL
+    (* Ключи SA: TRUE = автомат *)
+    SA1_Auto, SA2_Auto, SA3_Auto, SA4_Auto, SA5_Auto, SA6_Auto : BOOL;
+    SA7_Auto : BOOL;
+    SA8_Manual, SA9_Manual : BOOL;
+    SA8_1_Open, SA8_1_Close, SA9_1_Open, SA9_1_Close : BOOL;
+    SA10_ManualOpen, SA11_ManualOpen, SA12_ManualOn, SA13_Compressor : BOOL;
+    SA14_LightManual : BOOL;
+
+    (* Уровни и затопление — XT4, KL4 *)
+    LVL_High, LVL_Mid, LVL_Low, Flood : BOOL;
+
+    (* Контакты доп. защиты автоматов QF (ДК), лист 6 схемы *)
+    (* QF12–QF17 на схему не выведены — переменные не используются *)
+    DK_QF1, DK_QF2, DK_QF3, DK_QF4, DK_QF5, DK_QF6 : BOOL;
+    DK_QF7, DK_QF8, DK_QF9, DK_QF10, DK_QF11 : BOOL;
+    DK_QF18, DK_QF19 : BOOL;
+
+    (* УПП и обратная связь пускателей — MV210-214 A4 *)
+    VFD1_Run, VFD1_Alarm, VFD2_Run, VFD2_Alarm : BOOL;
+    
+    (* Аналоговое задание скорости на УПП — модуль MU210-502 (AO1/AO2), 4–20 mA по схеме *)
+    (* Тип UINT выбран, чтобы совпасть с типом канала AO в описании устройства и убрать предупреждение REAL→UINT. *)
+    VFD1_SpeedCmd, VFD2_SpeedCmd : UINT;
+    FB_KM0, FB_KM1, FB_KM2, FB_KM3, FB_KM4 : BOOL;
+    FB_KM5, FB_KM5_1, FB_KM6, FB_KM6_1 : BOOL;
+    FB_KM7, FB_KM8, FB_KM9, FB_KM10, FB_KM11 : BOOL;
+
+    (* Концевики кранов XT5 *)
+    M2_Closed, M2_Open, M3_Closed, M3_Open : BOOL;
+    M4_Closed, M4_Open, M5_Closed, M5_Open : BOOL;
+END_VAR
+
+VAR_GLOBAL
+    (* Команды на выходы MU210-403 *)
+    CMD_KM0, CMD_KM1, CMD_KM2, CMD_KM3, CMD_KM4 : BOOL;
+    CMD_KM5_Close, CMD_KM5_1_Open, CMD_KM6_Close, CMD_KM6_1_Open : BOOL;
+    CMD_KM7, CMD_KM8, CMD_KM9, CMD_KM10, CMD_KM11_Light : BOOL;
+    CMD_VFD1_Start, CMD_VFD1_Stop, CMD_VFD2_Start, CMD_VFD2_Stop : BOOL;
+END_VAR

@@ -1,0 +1,82 @@
+﻿PROGRAM PRG_HMI
+VAR
+    lvlText : STRING[20];
+END_VAR
+
+// Время (OwenRTC — при наличии привязать к SysTime; иначе заглушка)
+// HMI_NowHour := ...  — настраивается через OwenRTC в Device Tree
+
+Status_Manual := (WorkMode = MODE_MANUAL);
+Status_FillPhase := NOT FillPhaseDone AND (WorkMode = MODE_AUTO);
+
+Disp_LvlHigh := LVL_High;
+Disp_LvlMid  := LVL_Mid;
+Disp_LvlLow  := LVL_Low;
+Disp_Flood   := Flood;
+
+// Owen: CASE только с целочисленным селектором, не CASE TRUE OF с BOOL
+IF Flood THEN
+    lvlText := 'Затопление';
+ELSIF LVL_High THEN
+    lvlText := 'Верхний';
+ELSIF LVL_Mid THEN
+    lvlText := 'Рабочий';
+ELSIF LVL_Low THEN
+    lvlText := 'Нижний';
+ELSE
+    lvlText := 'Нет данных';
+END_IF
+Disp_LevelText := lvlText;
+
+// Насосы
+Disp_N1_Manual := NOT SA1_Auto;
+Disp_N2_Manual := NOT SA2_Auto;
+Disp_N3_Manual := NOT SA3_Auto;
+Disp_N4_Manual := NOT SA4_Auto;
+Disp_N5_Manual := NOT SA5_Auto;
+Disp_N6_Manual := NOT SA6_Auto;
+Disp_M1_Manual := NOT SA7_Auto;
+
+Disp_N1_Run := CMD_VFD1_Start OR VFD1_Run;
+Disp_N2_Run := FALSE;  // Н2 — прямой пуск, добавить FB при появлении DI
+Disp_N3_Run := CMD_VFD2_Start OR VFD2_Run;
+Disp_N4_Run := CMD_KM1 OR FB_KM1;
+Disp_N5_Run := CMD_KM2 OR FB_KM2;
+Disp_N6_Run := CMD_KM3 OR FB_KM3;
+Disp_M1_Run := CMD_KM0 OR FB_KM0;
+Disp_N1_Alarm := VFD1_Alarm;
+Disp_N3_Alarm := VFD2_Alarm;
+
+// Краны
+Disp_M2_Open := CMD_KM5_1_Open OR M2_Open;
+Disp_M3_Open := CMD_KM6_1_Open OR M3_Open;
+Disp_M4_Open := CMD_KM7 OR M4_Open;
+Disp_M5_Open := CMD_KM8 OR M5_Open;
+Disp_UF_On := CMD_KM9 OR FB_KM9;
+Disp_Compressor := CMD_KM10 OR FB_KM10;
+Disp_Light := CMD_KM11_Light OR FB_KM11;
+
+Alarm_VFD1 := VFD1_Alarm;
+Alarm_VFD2 := VFD2_Alarm;
+// Имена в GVL_HMI и GVL_Process совпадают — указывать GVL явно
+GVL_HMI.Alarm_DryRun := GVL_Process.Alarm_DryRun;
+GVL_HMI.Alarm_Flood := GVL_Process.Alarm_Flood;
+Alarm_AnyDK := DK_QF1 OR DK_QF2 OR DK_QF3 OR DK_QF4 OR DK_QF5 OR DK_QF6 OR DK_QF7
+    OR DK_QF8 OR DK_QF9 OR DK_QF10 OR DK_QF11 OR DK_QF18 OR DK_QF19;
+
+Status_Ready := SystemReady;
+Status_Running := SystemRunning;
+Status_Alarm := GVL_Process.Alarm_Active;
+
+// Owen: SEL(G,…) здесь G=BOOL не всегда принимается — через IF
+IF LVL_High THEN
+    Disp_LevelPct := 100;
+ELSIF LVL_Mid THEN
+    Disp_LevelPct := 60;
+ELSIF LVL_Low THEN
+    Disp_LevelPct := 20;
+ELSE
+    Disp_LevelPct := 0;
+END_IF
+
+END_PROGRAM

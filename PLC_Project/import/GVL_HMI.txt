@@ -1,0 +1,62 @@
+﻿VAR_GLOBAL
+    // --- Управление с HMI (только в автомате, если не ручной ключ на щите) ---
+    HMI_AutoEnable     : BOOL := TRUE;
+    HMI_ResetAlarm     : BOOL;
+    HMI_LightOn        : BOOL;
+    HMI_FillValveForce : BOOL;
+    HMI_Page           : INT := 0;   // 0=главная, 1=насосы, 2=краны, 3=уровни, 4=настройки
+
+    // --- Статусы системы ---
+    Status_Ready       : BOOL;
+    Status_Running     : BOOL;
+    Status_Alarm       : BOOL;
+    Status_Manual      : BOOL;
+    Status_FillPhase   : BOOL;
+    Disp_LevelPct      : INT;
+    Disp_LevelText     : STRING[20];
+
+    // --- Аварии ---
+    Alarm_DryRun       : BOOL;
+    Alarm_Flood        : BOOL;
+    Alarm_VFD1         : BOOL;
+    Alarm_VFD2         : BOOL;
+    Alarm_AnyDK        : BOOL;
+
+    // --- Насосы Н1-Н6, М1 (работа = команда AND обратная связь где есть) ---
+    Disp_N1_Run        : BOOL;
+    Disp_N2_Run        : BOOL;
+    Disp_N3_Run        : BOOL;
+    Disp_N4_Run        : BOOL;
+    Disp_N5_Run        : BOOL;
+    Disp_N6_Run        : BOOL;
+    Disp_M1_Run        : BOOL;
+    Disp_N1_Manual     : BOOL;
+    Disp_N2_Manual     : BOOL;
+    Disp_N3_Manual     : BOOL;
+    Disp_N4_Manual     : BOOL;
+    Disp_N5_Manual     : BOOL;
+    Disp_N6_Manual     : BOOL;
+    Disp_M1_Manual     : BOOL;
+    Disp_N1_Alarm      : BOOL;
+    Disp_N3_Alarm      : BOOL;
+
+    // --- Краны и прочее ---
+    Disp_M2_Open       : BOOL;
+    Disp_M3_Open       : BOOL;
+    Disp_M4_Open       : BOOL;
+    Disp_M5_Open       : BOOL;
+    Disp_UF_On         : BOOL;
+    Disp_Compressor    : BOOL;
+    Disp_Light         : BOOL;
+
+    // --- Уровни (дискрет) ---
+    Disp_LvlHigh       : BOOL;
+    Disp_LvlMid        : BOOL;
+    Disp_LvlLow        : BOOL;
+    Disp_Flood         : BOOL;
+
+    // --- Время для расписания (из RTC, заполняется в PRG_HMI) ---
+    HMI_NowHour        : BYTE;
+    HMI_NowMin         : BYTE;
+    HMI_NowSec         : BYTE;
+END_VAR

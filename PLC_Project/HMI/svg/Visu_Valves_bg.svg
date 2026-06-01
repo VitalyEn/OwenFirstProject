@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1f33"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a3352"/>
+      <stop offset="100%" stop-color="#132238"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="800" height="52" fill="url(#headerGrad)" stroke="#2a4a6b"/>
+  <text x="14" y="32" fill="#4cc9f0" font-family="Arial,sans-serif" font-size="16" font-weight="bold">KRANY M2-M5, UF, SVET</text>
+  <rect x="12" y="64" width="188" height="88" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="22" y="110" fill="#e8f2fa" font-size="14" font-weight="bold" font-family="Arial,sans-serif">M2</text>
+  <rect x="206" y="64" width="188" height="88" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="216" y="110" fill="#e8f2fa" font-size="14" font-weight="bold" font-family="Arial,sans-serif">M3</text>
+  <rect x="400" y="64" width="188" height="88" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="410" y="110" fill="#e8f2fa" font-size="14" font-weight="bold" font-family="Arial,sans-serif">M4 Doliv</text>
+  <rect x="594" y="64" width="194" height="88" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="604" y="110" fill="#e8f2fa" font-size="14" font-weight="bold" font-family="Arial,sans-serif">M5 Zatop</text>
+  <rect x="12" y="168" width="188" height="72" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="22" y="210" fill="#e8f2fa" font-size="14" font-family="Arial,sans-serif">U.F.</text>
+  <rect x="206" y="168" width="188" height="72" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="216" y="210" fill="#e8f2fa" font-size="14" font-family="Arial,sans-serif">Kompressor</text>
+  <rect x="400" y="168" width="388" height="72" rx="8" fill="#1a2f4a" stroke="#2a4a6b"/>
+  <text x="410" y="210" fill="#e8f2fa" font-size="14" font-family="Arial,sans-serif">Podsvetka KM11</text>
+  <text x="14" y="280" fill="#8aa8c4" font-size="11" font-family="Arial,sans-serif">LED: GVL_HMI.Disp_Mx_Open, Disp_Light</text>
+  <rect x="0" y="400" width="800" height="44" fill="#132238" stroke="#2a4a6b"/>
+  <line x1="160" y1="400" x2="160" y2="444" stroke="#2a4a6b"/>
+  <line x1="320" y1="400" x2="320" y2="444" stroke="#2a4a6b"/>
+  <line x1="480" y1="400" x2="480" y2="444" stroke="#2a4a6b"/>
+  <line x1="640" y1="400" x2="640" y2="444" stroke="#2a4a6b"/>
+  <text x="80" y="427" fill="#8aa8c4" font-size="12" text-anchor="middle" font-family="Arial,sans-serif">Glavnaya</text>
+  <text x="240" y="427" fill="#8aa8c4" font-size="12" text-anchor="middle" font-family="Arial,sans-serif">Nasosy</text>
+  <text x="400" y="427" fill="#4cc9f0" font-size="12" text-anchor="middle" font-weight="bold" font-family="Arial,sans-serif">Krany</text>
+  <text x="560" y="427" fill="#8aa8c4" font-size="12" text-anchor="middle" font-family="Arial,sans-serif">Urovni</text>
+  <text x="720" y="427" fill="#8aa8c4" font-size="12" text-anchor="middle" font-family="Arial,sans-serif">Nastrojki</text>
+  <rect x="320" y="398" width="160" height="3" fill="#4cc9f0"/>
+  <rect x="0" y="444" width="800" height="36" fill="#132238" stroke="#2a4a6b"/>
+</svg>

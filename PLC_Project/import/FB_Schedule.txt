@@ -1,0 +1,25 @@
+﻿FUNCTION_BLOCK FB_Schedule
+VAR_INPUT
+    Enable : BOOL;
+    Slot : ST_ScheduleSlot;
+    NowHour, NowMin : BYTE;
+END_VAR
+VAR_OUTPUT
+    Active : BOOL;
+END_VAR
+VAR
+    tStart, tStop, tNow : TIME;
+END_VAR
+IF NOT Enable OR NOT Slot.Enable THEN
+    Active := FALSE;
+    RETURN;
+END_IF
+tStart := (T#1H * Slot.StartHour) + (T#1M * Slot.StartMin);
+tStop  := (T#1H * Slot.StopHour)  + (T#1M * Slot.StopMin);
+tNow   := (T#1H * NowHour) + (T#1M * NowMin);
+IF tStart <= tStop THEN
+    Active := (tNow >= tStart) AND (tNow < tStop);
+ELSE
+    Active := (tNow >= tStart) OR (tNow < tStop);
+END_IF
+END_FUNCTION_BLOCK

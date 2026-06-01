@@ -1,0 +1,269 @@
+/* СПК210-07 — 800×480, WebVisu / Target Visu reference */
+:root {
+  --bg: #0a1628;
+  --panel: #132238;
+  --panel2: #1a2f4a;
+  --border: #2a4a6b;
+  --text: #e8f2fa;
+  --muted: #8aa8c4;
+  --ok: #2ec4b6;
+  --run: #4cc9f0;
+  --warn: #f4a261;
+  --alarm: #e76f51;
+  --manual: #e9c46a;
+  --off: #4a5f73;
+  --w: 800px;
+  --h: 480px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%;
+  background: #050d16;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: var(--text);
+  overflow: hidden;
+}
+
+.viewport {
+  width: var(--w);
+  height: var(--h);
+  margin: 0 auto;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--border);
+  position: relative;
+}
+
+/* Header */
+.header {
+  height: 52px;
+  background: linear-gradient(180deg, #1a3352 0%, var(--panel) 100%);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.header h1 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--run);
+  flex: 1;
+}
+.badge {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.badge-auto { background: rgba(46,196,182,0.25); color: var(--ok); border: 1px solid var(--ok); }
+.badge-manual { background: rgba(233,196,106,0.25); color: var(--manual); border: 1px solid var(--manual); }
+.badge-alarm { background: rgba(231,111,81,0.35); color: #fff; border: 1px solid var(--alarm); animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0.7; } }
+.clock { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Nav */
+.nav {
+  height: 44px;
+  display: flex;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.nav button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: 0.15s;
+}
+.nav button.active {
+  color: var(--run);
+  border-bottom-color: var(--run);
+  background: rgba(76,201,240,0.08);
+}
+.nav button:active { background: rgba(255,255,255,0.05); }
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.page { display: none; height: 100%; }
+.page.active { display: block; }
+
+/* Level tank */
+.tank-wrap {
+  display: flex;
+  gap: 14px;
+  height: 140px;
+  margin-bottom: 10px;
+}
+.tank {
+  width: 72px;
+  height: 130px;
+  border: 2px solid var(--border);
+  border-radius: 8px 8px 4px 4px;
+  background: #0d1f33;
+  position: relative;
+  overflow: hidden;
+}
+.tank-fill {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(0deg, #1a6b8a, var(--run));
+  transition: height 0.4s;
+}
+.tank-mark {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--warn);
+  opacity: 0.8;
+}
+.tank-mark.high { top: 12%; }
+.tank-mark.mid { top: 45%; }
+.tank-mark.low { top: 78%; background: var(--alarm); }
+.level-info { flex: 1; }
+.level-info h2 { font-size: 14px; margin-bottom: 6px; color: var(--run); }
+.level-sensors { display: flex; flex-direction: column; gap: 6px; }
+.sensor {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; padding: 6px 10px;
+  background: var(--panel2);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.sensor .dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--off);
+}
+.sensor.on .dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+.sensor.alarm .dot { background: var(--alarm); box-shadow: 0 0 8px var(--alarm); }
+
+/* Equipment grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.card {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  min-height: 72px;
+}
+.card .name { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.card .title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.card .state {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  display: inline-block;
+}
+.state-run { background: rgba(76,201,240,0.2); color: var(--run); }
+.state-stop { background: rgba(74,95,115,0.4); color: var(--muted); }
+.state-manual { background: rgba(233,196,106,0.2); color: var(--manual); }
+.state-alarm { background: rgba(231,111,81,0.3); color: #fff; }
+
+/* Valves row */
+.valve-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.valve {
+  flex: 1; min-width: 140px;
+  background: var(--panel2);
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.valve .icon { font-size: 22px; margin-bottom: 4px; }
+.valve.open { border-color: var(--ok); }
+.valve.closed { border-color: var(--off); }
+
+/* Settings */
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--panel2);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+.toggle {
+  width: 48px; height: 26px;
+  background: var(--off);
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  border: none;
+}
+.toggle.on { background: var(--ok); }
+.toggle::after {
+  content: '';
+  position: absolute;
+  width: 22px; height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  top: 2px; left: 2px;
+  transition: 0.2s;
+}
+.toggle.on::after { left: 24px; }
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--run);
+  color: #0a1628;
+}
+.btn:active { transform: scale(0.98); }
+.btn-alarm { background: var(--alarm); color: #fff; }
+.btn-warn { background: var(--warn); color: #0a1628; }
+
+/* Footer status bar */
+.footer {
+  height: 36px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 11px;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.footer .item { display: flex; align-items: center; gap: 6px; }
+.footer .led {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--off);
+}
+.footer .led.on { background: var(--ok); }
+.footer .led.alarm { background: var(--alarm); }
+
+/* Alarm banner */
+.alarm-banner {
+  display: none;
+  background: var(--alarm);
+  color: #fff;
+  text-align: center;
+  padding: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.alarm-banner.show { display: block; }

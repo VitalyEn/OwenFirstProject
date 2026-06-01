@@ -1,0 +1,44 @@
+﻿PROGRAM PRG_Main
+VAR
+    LevelMon : FB_LevelMonitor;
+    Manual   : FB_ManualMode;
+    Auto     : FB_AutoMode;
+    i : INT;
+END_VAR
+
+LevelMon(High := LVL_High, Mid := LVL_Mid, Low := LVL_Low, Flood := Flood);
+
+// Определение общего режима: если любой SA в ручном — приоритет ручного для этой группы
+WorkMode := MODE_AUTO;
+IF NOT SA1_Auto OR NOT SA2_Auto OR NOT SA3_Auto OR NOT SA4_Auto OR NOT SA5_Auto OR NOT SA6_Auto OR NOT SA7_Auto THEN
+    WorkMode := MODE_MANUAL;
+END_IF
+
+// Сброс аварии
+IF HMI_ResetAlarm THEN
+    GlobalStop := FALSE;
+    GVL_Process.Alarm_Active := FALSE;
+    GVL_Process.Alarm_DryRun := FALSE;
+    GVL_Process.Alarm_Flood := FALSE;
+END_IF
+
+CASE WorkMode OF
+    MODE_MANUAL:
+        Manual(Enable := TRUE);
+    MODE_AUTO:
+        IF HMI_AutoEnable THEN
+            Auto(
+                Enable := TRUE,
+                LevelState := LevelMon.State,
+                LevelAllowRun := LevelMon.AllowRun,
+                LevelNeedFill := LevelMon.NeedFill,
+                LevelEmergencyStop := LevelMon.EmergencyStop
+            );
+        END_IF
+END_CASE
+
+// Задание скорости на УПП (MU210-502 AO): 0% — стоп, VFD_Speed_RunPct (100%) — при пуске
+VFD1_SpeedCmd := SEL(CMD_VFD1_Start AND NOT GlobalStop, UINT#0, VFD_Speed_RunPct);
+VFD2_SpeedCmd := SEL(CMD_VFD2_Start AND NOT GlobalStop, UINT#0, VFD_Speed_RunPct);
+
+END_PROGRAM
