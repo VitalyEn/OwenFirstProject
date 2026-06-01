@@ -79,4 +79,8 @@ ELSE
     Disp_LevelPct := 0;
 END_IF
 
+// Полоса уровня в Visu: Height в Position статический — двигаем нижний край (§4.8)
+Disp_LevelBarH := Disp_LevelPct * 130 / 100;
+Disp_LevelBarRelY := Disp_LevelBarH - 130;
+
 END_PROGRAM

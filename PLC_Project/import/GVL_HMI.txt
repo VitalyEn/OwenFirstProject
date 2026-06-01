@@ -14,6 +14,9 @@
     Status_FillPhase   : BOOL;
     Disp_LevelPct      : INT;
     Disp_LevelText     : STRING[20];
+    // Для Rectangle «заливка уровня» — см. HMI/CODESYS_Visu_800x480.md §4.8
+    Disp_LevelBarH     : INT;   // высота полосы, px (0..130)
+    Disp_LevelBarRelY  : INT;   // Relative movement → bottom-right Y (= BarH - 130)
 
     // --- Аварии ---
     Alarm_DryRun       : BOOL;

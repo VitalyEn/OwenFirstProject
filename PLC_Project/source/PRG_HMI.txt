@@ -79,4 +79,7 @@ ELSE
     Disp_LevelPct := 0;
 END_IF
 
+Disp_LevelBarH := Disp_LevelPct * 130 / 100;
+Disp_LevelBarRelY := Disp_LevelBarH - 130;
+
 END_PROGRAM
