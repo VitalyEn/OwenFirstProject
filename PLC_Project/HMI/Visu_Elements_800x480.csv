@@ -1,0 +1,128 @@
+Экран	ID	Тип_элемента	X	Y	Ширина	Высота	Заливка_RGB	Имя_цвета	Контур	Шрифт_pt	Цвет_текста_HEX	Текст_статический	Переменная	Режим_текста	Тип_анимации	Условие	Цвет_при_TRUE	Цвет_при_FALSE	Видимость	Относит_перемещение_Y	Действие	Целевой_экран	Примечания
+Visu_Main	BG_Image	Image	0	0	800	480			нет			Visu_Main_bg.svg			нет					Send to back	 Selectable=off	 Image Pool	
+Visu_Main	HDR_Title	Text	12	14				ЩУ · Насосы Крым		Static				14	#E8F2FA								
+Visu_Main	HDR_ModeBg	Rectangle	520	10	120	32	46,196,182	OK	#2A4A6B					Color	GVL_HMI.Status_Manual	233,196,106	46,196,182			Manual если TRUE иначе OK			
+Visu_Main	HDR_ModeTxt_Manual	Text	530	18				Ручной		Static				12	#E8F2FA			GVL_HMI.Status_Manual			Visibility=TRUE только в ручном		
+Visu_Main	HDR_ModeTxt_Auto	Text	530	18				Автомат		Static				12	#E8F2FA			NOT GVL_HMI.Status_Manual			Visibility=TRUE только в авто		
+Visu_Main	HDR_Clock	Text	680	14						Expression	CONCAT из HMI_NowHour HMI_NowMin			12	#8AA8C4			Заглушка 0:00 до RTC					
+Visu_Main	ALM_Banner	Image	0	52	800	26			нет	Visu_Alarm_banner.svg			Visibility	GVL_HMI.Status_Alarm					или Rectangle 800x26 цвет Alarm				
+Visu_Main	ALM_Text	Text	12	56				АВАРИЯ		Static				12	#FFFFFF			GVL_HMI.Status_Alarm			опционально второй текст по Alarm_DryRun Flood		
+Visu_Main	TNK_Frame	Rectangle	12	90	80	130	19,34,56	Panel	#2A4A6B	Fill=Invisible контур 1px							статическая рамка резервуара						
+Visu_Main	TNK_Fill	Rectangle	20	98	64	130	76,201,240	Run	нет					RelativeMovement	GVL_HMI.Disp_LevelBarRelY			GVL_HMI.Disp_LevelBarRelY		§4.8 эталон H=130			
+Visu_Main	TNK_Pct	Text	30	200						Expression	CONCAT INT_TO_STRING Disp_LevelPct '%'			12	#E8F2FA								
+Visu_Main	TNK_Label	Text	12	225						Variable	GVL_HMI.Disp_LevelText			12	#E8F2FA								
+Visu_Main	SEN_High_LED	Ellipse	110	92	12	12	46,196,182	OK	#2A4A6B				GVL_HMI.Disp_LvlHigh	Input	Color	GVL_HMI.Disp_LvlHigh	46,196,182	74,95,115					
+Visu_Main	SEN_High_Txt	Text	128	90				Верхний		Static				12	#E8F2FA								
+Visu_Main	SEN_Mid_LED	Ellipse	110	120	12	12	46,196,182	OK	#2A4A6B				GVL_HMI.Disp_LvlMid	Input	Color	GVL_HMI.Disp_LvlMid	46,196,182	74,95,115					
+Visu_Main	SEN_Mid_Txt	Text	128	118				Рабочий		Static				12	#E8F2FA								
+Visu_Main	SEN_Low_LED	Ellipse	110	148	12	12	231,111,81	Alarm	#2A4A6B				GVL_HMI.Disp_LvlLow	Input	Color	GVL_HMI.Disp_LvlLow	231,111,81	74,95,115					
+Visu_Main	SEN_Low_Txt	Text	128	146				Нижний		Static				12	#E8F2FA								
+Visu_Main	SEN_Flood_LED	Ellipse	110	176	12	12	231,111,81	Alarm	#2A4A6B				GVL_HMI.Disp_Flood	Input	Color	GVL_HMI.Disp_Flood	231,111,81	74,95,115					
+Visu_Main	SEN_Flood_Txt	Text	128	174				Затопление		Static				12	#E8F2FA								
+Visu_Main	PMP_N1_Run	Ellipse	20	270	10	10	76,201,240	Run				GVL_HMI.Disp_N1_Run	Input	Color	GVL_HMI.Disp_N1_Run	76,201,240	74,95,115			карточка N1 база X12 Y240			
+Visu_Main	PMP_N1_Man	Ellipse	50	270	10	10	233,196,106	Manual				GVL_HMI.Disp_N1_Manual	Input	Color	GVL_HMI.Disp_N1_Manual	233,196,106	74,95,115						
+Visu_Main	PMP_N1_Alm	Ellipse	80	270	10	10	231,111,81	Alarm				GVL_HMI.Disp_N1_Alarm	Input	Color	GVL_HMI.Disp_N1_Alarm	231,111,81	74,95,115						
+Visu_Main	PMP_N3_Run	Ellipse	216	270	10	10	76,201,240	Run				GVL_HMI.Disp_N3_Run	Input	Color	GVL_HMI.Disp_N3_Run	76,201,240	74,95,115			карточка N3 X208			
+Visu_Main	PMP_N3_Man	Ellipse	246	270	10	10	233,196,106	Manual				GVL_HMI.Disp_N3_Manual	Input	Color	GVL_HMI.Disp_N3_Manual	233,196,106	74,95,115						
+Visu_Main	PMP_N3_Alm	Ellipse	276	270	10	10	231,111,81	Alarm				GVL_HMI.Disp_N3_Alarm	Input	Color	GVL_HMI.Disp_N3_Alarm	231,111,81	74,95,115						
+Visu_Main	PMP_N4_Run	Ellipse	412	270	10	10	76,201,240	Run				GVL_HMI.Disp_N4_Run	Input	Color	GVL_HMI.Disp_N4_Run	76,201,240	74,95,115			карточка N4 X404			
+Visu_Main	PMP_N4_Man	Ellipse	442	270	10	10	233,196,106	Manual				GVL_HMI.Disp_N4_Manual	Input	Color	GVL_HMI.Disp_N4_Manual	233,196,106	74,95,115						
+Visu_Main	PMP_M1_Run	Ellipse	608	270	10	10	76,201,240	Run				GVL_HMI.Disp_M1_Run	Input	Color	GVL_HMI.Disp_M1_Run	76,201,240	74,95,115			карточка M1 X600			
+Visu_Main	PMP_M1_Man	Ellipse	638	270	10	10	233,196,106	Manual				GVL_HMI.Disp_M1_Manual	Input	Color	GVL_HMI.Disp_M1_Manual	233,196,106	74,95,115						
+Visu_Main	STS_Ready	Ellipse	20	408	12	12	46,196,182	OK				GVL_HMI.Status_Ready	Input	Color	GVL_HMI.Status_Ready	46,196,182	74,95,115						
+Visu_Main	STS_Ready_Txt	Text	36	406				Готов		Static				11	#8AA8C4								
+Visu_Main	STS_Run	Ellipse	160	408	12	12	76,201,240	Run				GVL_HMI.Status_Running	Input	Color	GVL_HMI.Status_Running	76,201,240	74,95,115						
+Visu_Main	STS_Run_Txt	Text	176	406				Работа		Static				11	#8AA8C4								
+Visu_Main	STS_Fill	Ellipse	320	408	12	12	46,196,182	OK				GVL_HMI.Status_FillPhase	Input	Color	GVL_HMI.Status_FillPhase	46,196,182	74,95,115						
+Visu_Main	STS_Fill_Txt	Text	336	406				Наполнение		Static				11	#8AA8C4								
+Visu_Main	STS_Alm	Ellipse	520	408	12	12	231,111,81	Alarm				GVL_HMI.Status_Alarm	Input	Color	GVL_HMI.Status_Alarm	231,111,81	74,95,115						
+Visu_Main	STS_Alm_Txt	Text	536	406				Авария		Static				11	#8AA8C4								
+Visu_Main	NAV_Main	Button	10	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Main	текст Главная					
+Visu_Main	NAV_Pumps	Button	165	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Pumps	текст Насосы					
+Visu_Main	NAV_Valves	Button	320	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Valves	текст Краны					
+Visu_Main	NAV_Levels	Button	475	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Levels	текст Уровни					
+Visu_Main	NAV_Settings	Button	630	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Settings	текст Настройки					
+Visu_Pumps	BG_Image	Image	0	0	800	480			нет			Visu_Pumps_bg.svg			нет					Send to back			
+Visu_Pumps	PMP_N1_Run	Ellipse	22	102	10	10	76,201,240	Run				GVL_HMI.Disp_N1_Run	Input	Color	GVL_HMI.Disp_N1_Run	76,201,240	74,95,115			карточка N1 12,70			
+Visu_Pumps	PMP_N1_Man	Ellipse	52	102	10	10	233,196,106	Manual				GVL_HMI.Disp_N1_Manual	Input	Color	GVL_HMI.Disp_N1_Manual	233,196,106	74,95,115						
+Visu_Pumps	PMP_N1_Alm	Ellipse	82	102	10	10	231,111,81	Alarm				GVL_HMI.Disp_N1_Alarm	Input	Color	GVL_HMI.Disp_N1_Alarm	231,111,81	74,95,115						
+Visu_Pumps	PMP_N2_Run	Ellipse	422	102	10	10	76,201,240	Run				GVL_HMI.Disp_N2_Run	Input	Color	GVL_HMI.Disp_N2_Run	76,201,240	74,95,115			карточка N2 412,70			
+Visu_Pumps	PMP_N2_Man	Ellipse	452	102	10	10	233,196,106	Manual				GVL_HMI.Disp_N2_Manual	Input	Color	GVL_HMI.Disp_N2_Manual	233,196,106	74,95,115						
+Visu_Pumps	PMP_N3_Run	Ellipse	22	202	10	10	76,201,240	Run				GVL_HMI.Disp_N3_Run	Input	Color	GVL_HMI.Disp_N3_Run	76,201,240	74,95,115			карточка N3 12,170			
+Visu_Pumps	PMP_N3_Man	Ellipse	52	202	10	10	233,196,106	Manual				GVL_HMI.Disp_N3_Manual	Input	Color	GVL_HMI.Disp_N3_Manual	233,196,106	74,95,115						
+Visu_Pumps	PMP_N3_Alm	Ellipse	82	202	10	10	231,111,81	Alarm				GVL_HMI.Disp_N3_Alarm	Input	Color	GVL_HMI.Disp_N3_Alarm	231,111,81	74,95,115						
+Visu_Pumps	PMP_N4_Run	Ellipse	422	202	10	10	76,201,240	Run				GVL_HMI.Disp_N4_Run	Input	Color	GVL_HMI.Disp_N4_Run	76,201,240	74,95,115			карточка N4 412,170			
+Visu_Pumps	PMP_N4_Man	Ellipse	452	202	10	10	233,196,106	Manual				GVL_HMI.Disp_N4_Manual	Input	Color	GVL_HMI.Disp_N4_Manual	233,196,106	74,95,115						
+Visu_Pumps	PMP_N5_Run	Ellipse	22	302	10	10	76,201,240	Run				GVL_HMI.Disp_N5_Run	Input	Color	GVL_HMI.Disp_N5_Run	76,201,240	74,95,115			карточка N5 12,270			
+Visu_Pumps	PMP_N5_Man	Ellipse	52	302	10	10	233,196,106	Manual				GVL_HMI.Disp_N5_Manual	Input	Color	GVL_HMI.Disp_N5_Manual	233,196,106	74,95,115						
+Visu_Pumps	PMP_N6_Run	Ellipse	422	302	10	10	76,201,240	Run				GVL_HMI.Disp_N6_Run	Input	Color	GVL_HMI.Disp_N6_Run	76,201,240	74,95,115			карточка N6 412,270			
+Visu_Pumps	PMP_N6_Man	Ellipse	452	302	10	10	233,196,106	Manual				GVL_HMI.Disp_N6_Manual	Input	Color	GVL_HMI.Disp_N6_Manual	233,196,106	74,95,115						
+Visu_Pumps	PMP_M1_Run	Ellipse	22	402	10	10	76,201,240	Run				GVL_HMI.Disp_M1_Run	Input	Color	GVL_HMI.Disp_M1_Run	76,201,240	74,95,115			карточка M1 12,370			
+Visu_Pumps	PMP_M1_Man	Ellipse	52	402	10	10	233,196,106	Manual				GVL_HMI.Disp_M1_Manual	Input	Color	GVL_HMI.Disp_M1_Manual	233,196,106	74,95,115						
+Visu_Pumps	NAV_Main	Button	10	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Main	нижнее меню 5 кнопок					
+Visu_Pumps	NAV_Pumps	Button	165	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Pumps						
+Visu_Pumps	NAV_Valves	Button	320	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Valves						
+Visu_Pumps	NAV_Levels	Button	475	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Levels						
+Visu_Pumps	NAV_Settings	Button	630	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Settings						
+Visu_Valves	BG_Image	Image	0	0	800	480			нет			Visu_Valves_bg.svg			нет					Send to back			
+Visu_Valves	V_M2_LED	Ellipse	80	120	12	12	46,196,182	OK				GVL_HMI.Disp_M2_Open	Input	Color	GVL_HMI.Disp_M2_Open	46,196,182	74,95,115						
+Visu_Valves	V_M2_Txt	Text	100	118						Expression	TRUE=ОТКР FALSE=ЗАКР			12	#E8F2FA			по Disp_M2_Open					
+Visu_Valves	V_M3_LED	Ellipse	280	120	12	12	46,196,182	OK				GVL_HMI.Disp_M3_Open	Input	Color	GVL_HMI.Disp_M3_Open	46,196,182	74,95,115						
+Visu_Valves	V_M3_Txt	Text	300	118						Expression	TRUE=ОТКР FALSE=ЗАКР			12	#E8F2FA								
+Visu_Valves	V_M4_LED	Ellipse	480	120	12	12	46,196,182	OK				GVL_HMI.Disp_M4_Open	Input	Color	GVL_HMI.Disp_M4_Open	46,196,182	74,95,115						
+Visu_Valves	V_M4_Txt	Text	500	118						Expression	TRUE=ОТКР FALSE=ЗАКР			12	#E8F2FA								
+Visu_Valves	V_M5_LED	Ellipse	680	120	12	12	46,196,182	OK				GVL_HMI.Disp_M5_Open	Input	Color	GVL_HMI.Disp_M5_Open	46,196,182	74,95,115						
+Visu_Valves	V_M5_Txt	Text	700	118						Expression	TRUE=ОТКР FALSE=ЗАКР			12	#E8F2FA								
+Visu_Valves	V_UF_LED	Ellipse	80	260	12	12	46,196,182	OK				GVL_HMI.Disp_UF_On	Input	Color	GVL_HMI.Disp_UF_On	46,196,182	74,95,115						
+Visu_Valves	V_UF_Txt	Text	100	258						Expression	TRUE=ВКЛ FALSE=ВЫКЛ			12	#E8F2FA								
+Visu_Valves	V_CMP_LED	Ellipse	280	260	12	12	46,196,182	OK				GVL_HMI.Disp_Compressor	Input	Color	GVL_HMI.Disp_Compressor	46,196,182	74,95,115						
+Visu_Valves	V_CMP_Txt	Text	300	258						Expression	TRUE=ВКЛ FALSE=ВЫКЛ			12	#E8F2FA								
+Visu_Valves	V_LGT_LED	Ellipse	480	260	12	12	46,196,182	OK				GVL_HMI.Disp_Light	Input	Color	GVL_HMI.Disp_Light	46,196,182	74,95,115						
+Visu_Valves	V_LGT_Txt	Text	500	258						Expression	TRUE=ВКЛ FALSE=ВЫКЛ			12	#E8F2FA								
+Visu_Valves	NAV_Main	Button	10	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Main						
+Visu_Valves	NAV_Pumps	Button	165	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Pumps						
+Visu_Valves	NAV_Valves	Button	320	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Valves						
+Visu_Valves	NAV_Levels	Button	475	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Levels						
+Visu_Valves	NAV_Settings	Button	630	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Settings						
+Visu_Levels	BG_Image	Image	0	0	800	480			нет			Visu_Levels_bg.svg			нет					Send to back			
+Visu_Levels	TNK_Frame	Rectangle	24	72	100	190	19,34,56	Panel	#2A4A6B							статическая рамка крупнее Main							
+Visu_Levels	TNK_Fill	Rectangle	32	80	84	190	76,201,240	Run						RelativeMovement	GVL_HMI.Disp_LevelBarRelY			GVL_HMI.Disp_LevelBarRelY		подогнать RelY под H=190 в PRG_HMI			
+Visu_Levels	TNK_Pct	Text	50	200						Expression	Disp_LevelPct + %			12	#E8F2FA								
+Visu_Levels	TNK_Label	Text	24	270						Variable	GVL_HMI.Disp_LevelText			12	#E8F2FA								
+Visu_Levels	SEN_High_LED	Ellipse	420	100	12	12	46,196,182	OK				GVL_HMI.Disp_LvlHigh	Input	Color	GVL_HMI.Disp_LvlHigh	46,196,182	74,95,115			таблица датчиков справа			
+Visu_Levels	SEN_Mid_LED	Ellipse	420	128	12	12	46,196,182	OK				GVL_HMI.Disp_LvlMid	Input	Color	GVL_HMI.Disp_LvlMid	46,196,182	74,95,115						
+Visu_Levels	SEN_Low_LED	Ellipse	420	156	12	12	231,111,81	Alarm				GVL_HMI.Disp_LvlLow	Input	Color	GVL_HMI.Disp_LvlLow	231,111,81	74,95,115						
+Visu_Levels	SEN_Flood_LED	Ellipse	420	184	12	12	231,111,81	Alarm				GVL_HMI.Disp_Flood	Input	Color	GVL_HMI.Disp_Flood	231,111,81	74,95,115						
+Visu_Levels	LOGIC_Title	Text	320	72				Логика автомата		Static				12	#4CC9F0								
+Visu_Levels	LOGIC_Text	Text	320	92	460	120				Статический текст из ТЗ		Static				12	#8AA8C4			ожидание верха долив M4 работа по среднему стоп			
+Visu_Levels	STS_Ready	Ellipse	24	320	12	12	46,196,182	OK				GVL_HMI.Status_Ready	Input	Color	GVL_HMI.Status_Ready	46,196,182	74,95,115						
+Visu_Levels	STS_Run	Ellipse	120	320	12	12	76,201,240	Run				GVL_HMI.Status_Running	Input	Color	GVL_HMI.Status_Running	76,201,240	74,95,115						
+Visu_Levels	STS_Fill	Ellipse	216	320	12	12	46,196,182	OK				GVL_HMI.Status_FillPhase	Input	Color	GVL_HMI.Status_FillPhase	46,196,182	74,95,115						
+Visu_Levels	STS_Alm	Ellipse	312	320	12	12	231,111,81	Alarm				GVL_HMI.Status_Alarm	Input	Color	GVL_HMI.Status_Alarm	231,111,81	74,95,115						
+Visu_Levels	NAV_Main	Button	10	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Main						
+Visu_Levels	NAV_Pumps	Button	165	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Pumps						
+Visu_Levels	NAV_Valves	Button	320	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Valves						
+Visu_Levels	NAV_Levels	Button	475	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Levels						
+Visu_Levels	NAV_Settings	Button	630	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Settings						
+Visu_Settings	BG_Image	Image	0	0	800	480			нет			Visu_Settings_bg.svg			нет					Send to back			
+Visu_Settings	TOG_Auto	Toggle	40	100	240	28				GVL_HMI.HMI_AutoEnable	Variable						Input	Автомат с HMI					
+Visu_Settings	TOG_Auto_Lbl	Text	48	104				Автоматический режим		Static				12	#E8F2FA								
+Visu_Settings	TOG_Light	Toggle	40	150	240	28				GVL_HMI.HMI_LightOn	Variable						Input	Подсветка пруда					
+Visu_Settings	TOG_Light_Lbl	Text	48	154				Подсветка пруда		Static				12	#E8F2FA								
+Visu_Settings	TOG_Fill	Toggle	40	200	240	28				GVL_HMI.HMI_FillValveForce	Variable						Input	Принудительный долив M4					
+Visu_Settings	TOG_Fill_Lbl	Text	48	204				Принудительный долив M4		Static				12	#E8F2FA								
+Visu_Settings	BTN_Reset	Button	40	280	200	44	231,111,81	Alarm				GVL_HMI.HMI_ResetAlarm	Input					MouseDown=TRUE MouseUp=FALSE	§4.7 импульс				
+Visu_Settings	BTN_Reset_Lbl	Text	90	292				Сброс аварии		Static				12	#FFFFFF								
+Visu_Settings	NAV_Main	Button	10	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Main						
+Visu_Settings	NAV_Pumps	Button	165	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Pumps						
+Visu_Settings	NAV_Valves	Button	320	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Valves						
+Visu_Settings	NAV_Levels	Button	475	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Levels						
+Visu_Settings	NAV_Settings	Button	630	436	150	40	19,34,56	Panel						SwitchVisu			Visu_Settings						
+_GLOBAL	Palette_BG				10,22,40	BG							фон экрана 800x480										
+_GLOBAL	Palette_Panel				19,34,56	Panel							карточки панели										
+_GLOBAL	Palette_OK				46,196,182	OK							автомат уровень OK										
+_GLOBAL	Palette_Run				76,201,240	Run							насос работает										
+_GLOBAL	Palette_Manual				233,196,106	Manual							ручной режим										
+_GLOBAL	Palette_Alarm				231,111,81	Alarm							авария										
+_GLOBAL	Palette_Off				74,95,115	Off							стоп неактивно										
+_GLOBAL	VisuManager	VisualizationManager				800	480				Start=Visu_Main	TargetVisu=on	WebVisu=on	ClientSize=800x480									
